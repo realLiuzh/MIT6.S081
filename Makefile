@@ -134,6 +134,8 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 
 UPROGS=\
 	$U/_sleep\
+	$U/_myPipeDemo\
+	$U/_myDup\
 	$U/_myOffsetShare\
 	$U/_myRedirect\
 	$U/_pingpong\
