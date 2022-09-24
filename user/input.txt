@@ -1,0 +1,27 @@
+8eb3fe5 Merge branch 'riscv' into util
+e23d53f Delete doc dir because they take much space in student submissions
+6a4d1dc Merge branch 'riscv' into util
+ffb2ee0 move panicked check to uart.c
+db067d2 suppress write() output after panic()
+2ec9c6e Remove obselete ifdef that shouldn't have been there ever
+d7e5f26 fix usertests to pass all the riscv-sol-fall20 solutions.
+a5fe5a4 update submit url
+f2e85a3 Merge branch 'riscv' into util
+ba5a68b Mark start of new test more clearly Print test name before OK/FAIL
+efaa7b8 Adjust a few prototypes to be explicit that they don't take arguments
+c7b0557 this year's repo
+59a9863 touch sbrk()-allocated memory to make sure it exists
+aefa269 usertest for exec() out of memory recovery and fix a few exec() bugs
+b33574d Use the major number defined in file.h.  The minor number is ignored; might as well use 0.
+230d76b util lab
+740d363 Delete some obselete stuff
+b154cf0 x
+4a87a0a fix a bug in the out-of-memory handling code in exec
+adee82c handle another out-of-memory in fork(). the policy here is not consistent, since other calls (e.g. exec()) panic on out of memory.
+4c22c54 try to handle a few of the possible out-of-memory errors in fork()
+root@ubuntu-focal:~/xv6-labs-2020/user# git log --oneline -4
+0ee02e3 (HEAD -> util_test) myCat:使用write()/read()实现标准I/O
+fa32280 (util) myCat的实现
+9ab2996 (github/util) Lab1:sleep finished
+556644d 添加编译库
+
