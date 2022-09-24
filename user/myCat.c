@@ -3,7 +3,7 @@
 #include "user/user.h"
 
 // myCat.c
-// 标准输入与输出的demo
+// 通过write()/read() System call 实现I/O
 int
 main(int argc,char *argv[]){
 	char buf[512];
