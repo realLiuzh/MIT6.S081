@@ -1,45 +1,43 @@
-xv6 is a re-implementation of Dennis Ritchie's and Ken Thompson's Unix
-Version 6 (v6).  xv6 loosely follows the structure and style of v6,
-but is implemented for a modern RISC-V multiprocessor using ANSI C.
+[toc]
 
-ACKNOWLEDGMENTS
 
-xv6 is inspired by John Lions's Commentary on UNIX 6th Edition (Peer
-to Peer Communications; ISBN: 1-57398-013-7; 1st edition (June 14,
-2000)). See also https://pdos.csail.mit.edu/6.828/, which
-provides pointers to on-line resources for v6.
 
-The following people have made contributions: Russ Cox (context switching,
-locking), Cliff Frey (MP), Xiao Yu (MP), Nickolai Zeldovich, and Austin
-Clements.
+# Lab1
 
-We are also grateful for the bug reports and patches contributed by
-Silas Boyd-Wickizer, Anton Burtsev, Dan Cross, Cody Cutler, Mike CAT,
-Tej Chajed, Asami Doi, eyalz800, , Nelson Elhage, Saar Ettinger, Alice
-Ferrazzi, Nathaniel Filardo, Peter Froehlich, Yakir Goaron,Shivam
-Handa, Bryan Henry, jaichenhengjie, Jim Huang, Alexander Kapshuk,
-Anders Kaseorg, kehao95, Wolfgang Keller, Jonathan Kimmitt, Eddie
-Kohler, Austin Liew, Imbar Marinescu, Yandong Mao, Matan Shabtay,
-Hitoshi Mitake, Carmi Merimovich, Mark Morrissey, mtasm, Joel Nider,
-Greg Price, Ayan Shafqat, Eldar Sehayek, Yongming Shen, Fumiya
-Shigemitsu, Takahiro, Cam Tenny, tyfkda, Rafael Ubal, Warren Toomey,
-Stephen Tu, Pablo Ventura, Xi Wang, Keiichi Watanabe, Nicolas
-Wolovick, wxdao, Grant Wu, Jindong Zhang, Icenowy Zheng, and Zou Chang
-Wei.
+## sleep
 
-The code in the files that constitute xv6 is
-Copyright 2006-2020 Frans Kaashoek, Robert Morris, and Russ Cox.
+sleep.c
 
-ERROR REPORTS
+```c
+//1.获取用户输入的命令行参数
+//2.调用 sleep() System call
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
 
-Please send errors and suggestions to Frans Kaashoek and Robert Morris
-(kaashoek,rtm@mit.edu). The main purpose of xv6 is as a teaching
-operating system for MIT's 6.S081, so we are more interested in
-simplifications and clarifications than new features.
+int
+main(int argc, char *argv[]) {
+    int i, len;
+    // 参数校验
+    if (argc != 2) {
+        write(1, "input error!\n\0", 14);
+        exit(1);
+    }
+    char *timeStr = argv[1];
+    char *temp = timeStr;
+    for (i = 0, len = strlen(timeStr); i < len; i++) {
+        if ('0' <= *(temp + i) && *(temp + i) <= '9')
+            continue;
+        else {
+            write(1, "input error!\n\0", 14);
+            exit(0);
+        }
+    }
+    // 系统调用
+    int time = atoi(timeStr);
+    sleep(time);
+    exit(0);
+}
 
-BUILDING AND RUNNING XV6
+```
 
-You will need a RISC-V "newlib" tool chain from
-https://github.com/riscv/riscv-gnu-toolchain, and qemu compiled for
-riscv64-softmmu. Once they are installed, and in your shell
-search path, you can run "make qemu".
