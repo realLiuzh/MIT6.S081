@@ -134,7 +134,7 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 
 UPROGS=\
 	$U/_find\
-	$U/_answer-sleep\
+	$U/_as-sleep\
 	$U/_sleep\
 	$U/_myPipeDemo\
 	$U/_myDup\
